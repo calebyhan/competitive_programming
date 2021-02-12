@@ -13,9 +13,9 @@ f = open("mowing.out", "w")
 print(mowed)
 
 field = []
-for i in range(2000):
+for i in range(2001):
   temp = []
-  for j in range(2000):
+  for j in range(2001):
     temp.append(0)
   field.append(temp)
 
@@ -49,24 +49,28 @@ for i in range(n):
           temp = i + 1
         else:
           field1[prev[0]][prev[1] + 1] = 1
+          prev = [prev[0], prev[1] + 1]
       elif d == "S":
         if field1[prev[0]][prev[1] - 1] == 1:
           go = False
           temp = i + 1
         else:
           field1[prev[0]][prev[1] - 1] = 1
+          prev = [prev[0], prev[1] - 1]
       elif d == "E":
         if field1[prev[0] + 1][prev[1]] == 1:
           go = False
           temp = i + 1
         else:
           field1[prev[0] + 1][prev[1]] = 1
+          prev = [prev[0] + 1, prev[1]]
       else:
         if field1[prev[0] - 1][prev[1]] == 1:
           go = False
           temp = i + 1
         else:
           field1[prev[0] - 1][prev[1]] = 1
+          prev = [prev[0] - 1, prev[1]]
 
 output = 0
 
