@@ -11,11 +11,9 @@ f.close()
 m = n
 
 for a in list(zip(*points))[0]:
+  a += 1
   for b in list(zip(*points))[1]:
-    a += 1
     b += 1
-    if a % 2 == 1 or b % 2 == 1:
-      break
     q1 = 0
     q2 = 0
     q3 = 0
