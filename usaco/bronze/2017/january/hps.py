@@ -60,11 +60,8 @@ for i in range(len(possible)):
     if plays[j][0] == plays[j][1]:
       continue
     else:
-
       total += determine(det[0], det[1])
-
   output = max(output, total)
-
 
 f = open("hps.out", "w")
 f.write(str(output))
