@@ -2,45 +2,45 @@ f = open("crossroad.in")
 
 n = int(f.readline().strip())
 
-ids = []
-cross = []
-
-for i in range(n):
-  temp = f.readline().strip().split()
-  ids.append(int(temp[0]))
-  cross.append(int(temp[1]))
-
-f.close()
-
-cows1 = []
-cows2 = []
+lst = []
 
 output = 0
 
 for i in range(n):
-  if ids[i] in cows1:
-    if cross[i] == 1:
-      cows2[cows1.index(ids[i])] += 1
+  temp = list(map(int, f.readline().strip().split()))
+  temp1 = False
+  temp2 = 0
+  print(temp)
+  for j in range(len(lst)):
+    if temp[0] == lst[j][0]:
+      temp1 = True
+      temp2 = j
+  if not temp1:
+    if temp[1] == 1:
+      lst.append(temp)
     else:
-      cows2[cows1.index(ids[i])] -= 1
+      lst.append([temp[0], -1])
   else:
-    cows1.append(ids[i])
-    if cross[i] == 1:
-      cows2.append(1)
+    if temp[1] == 0:
+      lst[temp2][1] -= 1
     else:
-      cows2.append(-1)
-  for j in range(len(cows2)):
-    print(cows1, cows2)
-    print(j)
-    if j + 1 > len(cows2):
-      break
-    if cows2[j] == 0:
+      lst[temp2][1] += 1
+  for j in range(len(lst)):
+    if lst[j][1] > 1:
+      lst[j][1] = 1
+    if lst[j][1] < -1:
+      lst[j][1] = -1
+  print(lst)
+  lst1 = list(lst)
+  for j in range(len(lst1)):
+    if lst1[j][1] == 0:
       output += 1
-      cows1.remove(cows1[j])
-      cows2.remove(cows2[j])
-    print(output)
+      lst.remove(lst[j])
+  print(output)
+  print()
 
 
+f.close()
 
 f = open("crossroad.out", "w")
 f.write(str(output))
